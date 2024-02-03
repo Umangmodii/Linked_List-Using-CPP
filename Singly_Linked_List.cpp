@@ -53,6 +53,25 @@ void print(Node *&head) // Address of &head in Pointer
     cout << endl;
 }
 
+void insertAtPosition(int position, int data, Node *head)
+{
+    Node *temp = head;
+    int count = 1;
+
+    while (count < position - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+
+    // Creating a new Node
+    Node *nodetoInsert = new Node(data);
+
+    nodetoInsert->next = temp->next;
+
+    temp->next = nodetoInsert;
+}
+
 main()
 {
     // Create a Class Objects
@@ -70,7 +89,11 @@ main()
 
     // Values And Function Passed
     insertAtTail(tail, 15);
+     print(head);
     // insertAtTail(tail, 15)
+
+    // Insert Middle Position
+    insertAtPosition(3, 22, head);
 
     // Function Used Copy Pointer Address
     print(head);
