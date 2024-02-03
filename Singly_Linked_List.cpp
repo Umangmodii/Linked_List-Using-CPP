@@ -22,6 +22,7 @@ public:
 };
 
 // Insert Fuction
+// Starting
 void insertAtHead(Node *&head, int data) // &head is Reference  of the head node so that any changes made will reflect to the actual head also.
 {
     /* 1. Allocate node and put the data */
@@ -29,6 +30,14 @@ void insertAtHead(Node *&head, int data) // &head is Reference  of the head node
     /* 2. Make next of head as NULL so that it can be the first node */
     temp->next = head;
     head = temp;
+}
+
+// Ending
+void insertAtTail(Node *&tail, int data)
+{
+    Node *temp = new Node(data);
+    tail->next = temp;
+    tail = temp;
 }
 
 void print(Node *&head) // Address of &head in Pointer
@@ -48,10 +57,23 @@ main()
 {
     // Create a Class Objects
     Node *node1 = new Node(10); // Values Given in 10
-    cout << node1->data << endl;
-    cout << node1->next << endl;
+    // cout << node1->data << endl;
+    // cout << node1->next << endl;
 
     Node *head = node1;
+    Node *tail = node1;
+    print(head);
+
+    // insertAtHead(head, 12);
+    insertAtTail(tail, 12);
+    print(head);
+
+    // Values And Function Passed
+    insertAtTail(tail, 15);
+    // insertAtTail(tail, 15)
+
+    // Function Used Copy Pointer Address
+    print(head);
 
     return 0;
 }
