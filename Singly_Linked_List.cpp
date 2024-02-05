@@ -19,6 +19,21 @@ public:
         this->data = d;
         this->next = NULL;
     }
+
+    // Descturctor
+    ~Node()
+    {
+        int value = this->data;
+
+        // Memory Free
+        if (this->next != NULL)
+        {
+            delete next;
+            next = NULL;
+        }
+
+        cout << "Memory is Free for data." << value << " .\n";
+    }
 };
 
 // Insert Fuction
@@ -72,7 +87,45 @@ void insertAtPosition(int position, int data, Node *head)
     temp->next = nodetoInsert;
 }
 
-main()
+// Deletion Operations
+
+void DeletionNode(int position, Node *&head)
+{
+    // Delete first or start node
+
+    if (position == 1)
+    {
+        Node *temp = head;
+        head = head->next;
+
+        // Memory Free Space Node
+        temp->next = NULL;
+        delete temp;
+    }
+
+    else
+    {
+        // Delete any middle node or last node
+
+        Node *curr = head;
+        Node *prev = NULL;
+
+        int count = 1;
+
+        while (count < position)
+        {
+            prev = curr;
+            curr = curr->next;
+            count++;
+        }
+
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+    }
+}
+
+int main()
 {
     // Create a Class Objects
     Node *node1 = new Node(10); // Values Given in 10
@@ -89,13 +142,16 @@ main()
 
     // Values And Function Passed
     insertAtTail(tail, 15);
-     print(head);
+    print(head);
     // insertAtTail(tail, 15)
 
     // Insert Middle Position
     insertAtPosition(3, 22, head);
 
     // Function Used Copy Pointer Address
+    print(head);
+
+    DeletionNode(3, head);
     print(head);
 
     return 0;
